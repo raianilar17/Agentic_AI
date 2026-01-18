@@ -1,0 +1,30 @@
+!pip3 install patool
+
+import patoolib
+import os
+
+def zip_folder(input_folder, output_zip):
+    """
+    Create a ZIP file from a folder using patoolib.
+
+    Args:
+        input_folder (str): Path to the folder you want to zip.
+        output_zip (str): Output zip file name or path (must end with .zip)
+    """
+    # Validate input folder
+    if not os.path.isdir(input_folder):
+        raise ValueError(f"Input folder does not exist: {input_folder}")
+
+    # Ensure output filename ends with .zip
+    if not output_zip.endswith(".zip"):
+        output_zip += ".zip"
+
+    # patoolib expects a tuple of paths
+    patoolib.create_archive(output_zip, (input_folder,))
+    print(f"✔ Folder zipped: {input_folder} → {output_zip}")
+
+
+
+# zip_folder("project_data", "project_data.zip")
+zip_folder("/home/jovyan/work/M2", "/home/jovyan/work/module2.zip")
+
